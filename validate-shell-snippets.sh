@@ -63,7 +63,7 @@ function main() {
 
   yq -r -0 ".steps[.task].inputs | select(.inlineScript) | .inlineScript" "$@" | \
     sed -e 's/---//g' | \
-    xargs -0 -I{} sh -c 'echo "Checking bash script snippet $1"; echo "$1" | sed -r -e "s/\{\{[ ]?/\{/g" -e "s/[ ]?\}\}/\}/g"  | /bin/shellcheck -s bash -S warning -' sh {}
+    xargs -0 -I{} sh -c 'cd /bin && echo "Checking bash script snippet $1"; echo "$1" | sed -r -e "s/\{\{[ ]?/\{/g" -e "s/[ ]?\}\}/\}/g"  | shellcheck -s bash -S warning -' sh {}
 }
 
 main "$@"

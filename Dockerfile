@@ -5,4 +5,4 @@ RUN apk add yq
 COPY validate-shell-snippets.sh /bin/validate-shell-snippets
 COPY .shellcheckrc /bin/.shellcheckrc
 
-ENTRYPOINT ["validate-shell-snippets.sh"]
+ENTRYPOINT ["/bin/validate-shell-snippets"]
