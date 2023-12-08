@@ -61,9 +61,10 @@ function main() {
   # terraform init
   # terraform plan -refresh-only -var="team_name=${TEAM_NAME}" -var="environment=${ENVIRONMENT}" -var="subscription_id=${SUBSCRIPTION_ID}"
 
-  yq -r -0 ".steps[.task].inputs | select(.inlineScript) | .inlineScript" "$@" | \
-    sed -e 's/---//g' | \
-    xargs -0 -I{} sh -c 'cd /bin && echo "Checking bash script snippet $1"; echo "$1" | sed -r -e "s/\{\{[ ]?/\{/g" -e "s/[ ]?\}\}/\}/g"  | shellcheck -s bash -S warning -' sh {}
+  # yq -N -r -0 ".steps[.task].inputs | select(.inlineScript) | .inlineScript" "$@" | \
+    # xargs -0 -I{} sh -c 'cd /bin && echo "Checking bash script snippet $1"; echo "$1" | sed -r -e "s/\{\{[ ]?/\{/g" -e "s/[ ]?\}\}/\}/g"  | shellcheck -s bash -S warning -' sh {}
+  yq -N -r -0 --from-file /bin/yq.exp.txt "$@" | \
+    xargs -0 -I{} /bin/xargs.sh {}
 }
 
 main "$@"
