@@ -1,4 +1,4 @@
-#!/bin/sh 
+#!/bin/sh
 
 # Print shell snippet to check.
 # AZDO parameter / variable refferences with ${{ par }} are converted into shell variable syntax

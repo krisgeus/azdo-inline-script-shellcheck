@@ -3,7 +3,7 @@
 ), (
 	(
 		.steps[].script | select(. != null)
-	), 
+	),
 	(
 		.steps[].bash | select (. != null)
 	)
