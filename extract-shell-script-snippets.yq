@@ -1,0 +1,10 @@
+(
+	.steps[].inputs.inlineScript | select(. != null)
+), (
+	(
+		.steps[].script | select(. != null)
+	),
+	(
+		.steps[].bash | select (. != null)
+	)
+)
