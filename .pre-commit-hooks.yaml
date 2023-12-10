@@ -1,6 +1,6 @@
 - id: validate-shell-snippets
   name: Validate shell inline script snippets
-  description: This hook performsa shellcheck on inline scripts in AZDO pipeline yamls.
+  description: This hook performs shellcheck on inline scripts in AZDO pipeline yamls.
   entry: validate-shell-snippets
   language: docker
   types: [yaml]
