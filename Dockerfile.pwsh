@@ -1,0 +1,9 @@
+FROM cypher0n3/psscriptanalyzer-docker:latest
+
+RUN apk add --no-cache yq==4.35.2-r1
+
+COPY validate-pwsh-snippets.ps1 /bin/validate-pwsh-snippets
+COPY analyze-pwsh-snippet.ps1 /bin/analyze-pwsh-snippet.ps1
+COPY extract-pwsh-script-snippets.yq /bin/extract-pwsh-script-snippets.yq
+
+ENTRYPOINT ["/bin/validate-pwsh-snippets"]
