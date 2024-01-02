@@ -1,10 +1,16 @@
 (
-	.steps[].inputs.inlineScript | select(. != null)
+	.steps[].inputs | select(.scriptType == "bash" and .scriptLocation == "inlineScript").inlineScript
 ), (
 	(
 		.steps[].script | select(. != null)
 	),
 	(
+		.steps[] | select(.task == "CmdLine@*").inputs.script | select(. != null)
+	),
+	(
 		.steps[].bash | select (. != null)
+	),
+	(
+		.steps[] | select(.task == "Bash@*" and .inputs.targetType == "inline").inputs.script | select (. != null)
 	)
 )
