@@ -4,7 +4,8 @@ on:  # yamllint disable-line rule:truthy
   pull_request:
   push:
     branches: [main]
-    tags:
+  release:
+    types: [published]
 
 env:
   # Specify which image to build
