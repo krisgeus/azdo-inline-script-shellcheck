@@ -40,20 +40,6 @@ jobs:
            org.opencontainers.image.created=$(git log -1 --format=%cd --date=iso-strict)
            org.opencontainers.image.revision=${{ github.sha }}
 
-      - name: Build ARM image
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          file: ./Dockerfile.pwsh.arm64
-          push: false
-          load: true
-          tags: ${{ env.DOCKER_IMAGE }}:latest-arm
-          labels: |
-           org.opencontainers.image.source=${{ github.event.repository.clone_url }}
-           org.opencontainers.image.created=$(git log -1 --format=%cd --date=iso-strict)
-           org.opencontainers.image.revision=${{ github.sha }}
-          platforms: linux/arm64
-
       - name: Log in to GitHub Docker Registry
         uses: docker/login-action@v3
         with:
@@ -78,23 +64,6 @@ jobs:
            org.opencontainers.image.revision=${{ github.sha }}
           platforms: linux/amd64
 
-      - name: Push latest ARM image
-        # Build and push because of multi platform build
-        if: github.ref == 'refs/heads/main'
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          file: ./Dockerfile.pwsh.arm64
-          push: true
-          provenance: false
-          sbom: false
-          tags: ${{ env.DOCKER_IMAGE }}:latest-arm
-          labels: |
-           org.opencontainers.image.source=${{ github.event.repository.clone_url }}
-           org.opencontainers.image.created=$(git log -1 --format=%cd --date=iso-strict)
-           org.opencontainers.image.revision=${{ github.sha }}
-          platforms: linux/arm64
-
       - name: Push release image
         # Build and push because of multi platform build
         if: startsWith(github.event.release.tag_name, 'v')
@@ -111,20 +80,3 @@ jobs:
            org.opencontainers.image.created=$(git log -1 --format=%cd --date=iso-strict)
            org.opencontainers.image.revision=${{ github.sha }}
           platforms: linux/amd64
-
-      - name: Push release ARM image
-        # Build and push because of multi platform build
-        if: startsWith(github.event.release.tag_name, 'v')
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          file: ./Dockerfile.pwsh.arm64
-          push: true
-          provenance: false
-          sbom: false
-          tags: ${{ env.DOCKER_IMAGE }}:${{ github.event.release.tag_name }}-arm
-          labels: |
-           org.opencontainers.image.source=${{ github.event.repository.clone_url }}
-           org.opencontainers.image.created=$(git log -1 --format=%cd --date=iso-strict)
-           org.opencontainers.image.revision=${{ github.sha }}
-          platforms: linux/arm64
