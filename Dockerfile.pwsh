@@ -1,8 +1,14 @@
 FROM cypher0n3/psscriptanalyzer-docker:latest
 
-RUN apk add --no-cache yq==4.35.2-r1
+ENV POWERSHELL_TELEMETRY_OPTOUT=1
 
-COPY validate-pwsh-snippets.ps1 /bin/validate-pwsh-snippets
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends wget=1.21.2-2ubuntu1 && \
+    wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 && \
+    chmod +x /usr/local/bin/yq && \
+    rm -rf /var/lib/apt/lists/*
+
+COPY validate-pwsh-snippets.sh /bin/validate-pwsh-snippets
 COPY analyze-pwsh-snippet.ps1 /bin/analyze-pwsh-snippet.ps1
 COPY extract-pwsh-script-snippets.yq /bin/extract-pwsh-script-snippets.yq
 

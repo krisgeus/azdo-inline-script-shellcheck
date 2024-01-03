@@ -1,0 +1,20 @@
+(
+	.steps[].inputs | select(.scriptType | test("ps|pscore") and .scriptLocation == "inlineScript").inlineScript
+), (
+	(
+		.steps[].pwsh | select (. != null)
+	),
+	(
+		.steps[].powershell | select (. != null)
+	),
+	(
+		.steps[] | select(.task == "PowerShellOnTargetMachines@3").inputs.InlineScript | select (. != null)
+	)
+	(
+		.steps[] | select(.task == "PowerShell@2" and .inputs.targetType == "inline").inputs.script | select (. != null)
+	),
+	,
+	(
+		.steps[] | select(.task == "PowerShell@1" and .inputs.scriptType == "inlineScript").inputs.inlineScript | select (. != null)
+	)
+)
