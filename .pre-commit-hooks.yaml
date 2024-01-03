@@ -28,3 +28,15 @@
   language: docker_image
   entry: ghcr.io/krisgeus/inline-pwsh-check:v2.0.1
   types: [yaml]
+- id: validate-powershell-snippets-docker-latest-arm
+  name: Validate powershell inline script snippets with latest ARM docker
+  description: This hook performs PSScriptAnalyzer on inline powershell scripts in AZDO pipeline yamls.
+  language: docker_image
+  entry: ghcr.io/krisgeus/inline-pwsh-check:latest-arm
+  types: [yaml]
+- id: validate-powershell-snippets-docker-release-arm
+  name: Validate shell inline script snippets with released ARM docker
+  description: This hook performs PSScriptAnalyzer on inline powershell scripts in AZDO pipeline yamls.
+  language: docker_image
+  entry: ghcr.io/krisgeus/inline-pwsh-check:v2.0.1-arm
+  types: [yaml]
