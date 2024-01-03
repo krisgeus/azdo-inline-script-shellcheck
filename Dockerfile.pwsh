@@ -1,12 +1,16 @@
-FROM cypher0n3/psscriptanalyzer-docker:latest
+FROM mcr.microsoft.com/powershell:latest
 
 ENV POWERSHELL_TELEMETRY_OPTOUT=1
 
 RUN apt-get update && \
+    apt-get upgrade -y && \
     apt-get install -y --no-install-recommends wget=1.21.2-2ubuntu1 && \
     wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 && \
     chmod +x /usr/local/bin/yq && \
+    apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/*
+
+RUN pwsh -c "Install-Module -Name PSScriptAnalyzer -Scope AllUsers -Force"
 
 COPY validate-pwsh-snippets.sh /bin/validate-pwsh-snippets
 COPY analyze-pwsh-snippet.ps1 /bin/analyze-pwsh-snippet.ps1
