@@ -12,6 +12,8 @@ RUN apt-get update && \
 
 RUN pwsh -c "Install-Module -Name PSScriptAnalyzer -Scope AllUsers -Force"
 
+SHELL ["/bin/bash", "-c"]
+
 COPY validate-pwsh-snippets.sh /bin/validate-pwsh-snippets
 COPY analyze-pwsh-snippet.ps1 /bin/analyze-pwsh-snippet.ps1
 COPY extract-pwsh-script-snippets.yq /bin/extract-pwsh-script-snippets.yq

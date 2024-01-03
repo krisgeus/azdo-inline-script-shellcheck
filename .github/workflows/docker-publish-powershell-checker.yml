@@ -62,7 +62,7 @@ jobs:
            org.opencontainers.image.source=${{ github.event.repository.clone_url }}
            org.opencontainers.image.created=$(git log -1 --format=%cd --date=iso-strict)
            org.opencontainers.image.revision=${{ github.sha }}
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64
 
       - name: Push release image
         # Build and push because of multi platform build
@@ -79,4 +79,4 @@ jobs:
            org.opencontainers.image.source=${{ github.event.repository.clone_url }}
            org.opencontainers.image.created=$(git log -1 --format=%cd --date=iso-strict)
            org.opencontainers.image.revision=${{ github.sha }}
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64
