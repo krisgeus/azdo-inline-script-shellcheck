@@ -14,7 +14,7 @@
   name: Validate shell inline script snippets with released docker
   description: This hook performs shellcheck on inline scripts in AZDO pipeline yamls.
   language: docker_image
-  entry: ghcr.io/krisgeus/inline-bash-check:v2.0.1
+  entry: ghcr.io/krisgeus/inline-bash-check:v2.0.2
   types: [yaml]
 - id: validate-powershell-snippets-docker-latest
   name: Validate powershell inline script snippets with latest docker
@@ -26,5 +26,5 @@
   name: Validate shell inline script snippets with released docker
   description: This hook performs PSScriptAnalyzer on inline powershell scripts in AZDO pipeline yamls.
   language: docker_image
-  entry: ghcr.io/krisgeus/inline-pwsh-check:v2.0.1
+  entry: ghcr.io/krisgeus/inline-pwsh-check:v2.0.2
   types: [yaml]
