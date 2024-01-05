@@ -18,7 +18,7 @@ In your `.pre-commit-config.yaml` use the following config:
 
 ```yaml
 - repo: https://github.com/krisgeus/azdo-inline-script-shellcheck
-  rev: v2.0.1
+  rev: v2.0.2
   hooks:
   - id: validate-shell-snippets
     name: Check shell snippets in yaml files
@@ -36,7 +36,7 @@ In your `.pre-commit-config.yaml` use the following config:
 
 ```yaml
 - repo: https://github.com/krisgeus/azdo-inline-script-shellcheck
-  rev: v2.0.1
+  rev: v2.0.2
   hooks:
   - id: validate-shell-snippets-docker-latest
     name: Check shell snippets in yaml files
@@ -44,7 +44,7 @@ In your `.pre-commit-config.yaml` use the following config:
 
 ## validate-shell-snippets-docker-release
 
-Same as [Validate Shell Snippets](#validate-shell-snippets) but using the pre-built docker image from the release (tag v2.0.1)
+Same as [Validate Shell Snippets](#validate-shell-snippets) but using the pre-built docker image from the release (tag v2.0.2)
 
 ### validate-shell-snippets-docker-release Usage
 
@@ -52,7 +52,7 @@ In your `.pre-commit-config.yaml` use the following config:
 
 ```yaml
 - repo: https://github.com/krisgeus/azdo-inline-script-shellcheck
-  rev: v2.0.1
+  rev: v2.0.2
   hooks:
   - id: validate-shell-snippets-docker-release
     name: Check shell snippets in yaml files
@@ -74,7 +74,7 @@ In your `.pre-commit-config.yaml` use the following config:
 
 ```yaml
 - repo: https://github.com/krisgeus/azdo-inline-script-shellcheck
-  rev: v2.0.1
+  rev: v2.0.2
   hooks:
   - id: validate-powershell-snippets-docker-latest
     name: Check shell snippets in yaml files
@@ -83,7 +83,7 @@ In your `.pre-commit-config.yaml` use the following config:
 ## validate-powershell-snippets-docker-release
 
 Same as [Validate Powershell Snippets](#validate-powershell-snippets-docker-latest) but
-using the pre-built docker image from the release (tag v2.0.1)
+using the pre-built docker image from the release (tag v2.0.2)
 
 ### validate-powershell-snippets-docker-release Usage
 
@@ -91,7 +91,7 @@ In your `.pre-commit-config.yaml` use the following config:
 
 ```yaml
 - repo: https://github.com/krisgeus/azdo-inline-script-shellcheck
-  rev: v2.0.1
+  rev: v2.0.2
   hooks:
   - id: validate-powershell-snippets-docker-release
     name: Check shell snippets in yaml files
