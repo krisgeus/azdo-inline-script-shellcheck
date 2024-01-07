@@ -3,7 +3,7 @@ FROM drjp81/powershell:latest
 ENV POWERSHELL_TELEMETRY_OPTOUT=1
 
 RUN addgroup --gid 1000 validator \
-    && adduser --uid 1000 --gid 1000 -m validator
+    && adduser --uid 1000 --gid 1000 validator
 
 RUN apt-get update && \
     apt-get upgrade -y && \
