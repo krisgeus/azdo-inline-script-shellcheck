@@ -1,4 +1,4 @@
-name: Docker Build Bash Checker CI
+name: Docker Build Shell Checker CI
 
 on:  # yamllint disable-line rule:truthy
   pull_request:
