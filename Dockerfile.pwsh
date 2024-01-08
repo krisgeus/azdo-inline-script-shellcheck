@@ -13,12 +13,15 @@ RUN apt-get update && \
     apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/*
 
-RUN pwsh -c "Install-Module -Name PSScriptAnalyzer -Scope AllUsers -Force" && \
-    mkdir -p "/home/validator/.cache/powershell" && \
-    chmod 555 "/home/validator/.cache/powershell" && \
-    rm -f "/home/validator/.cache/powershell/*"
+SHELL ["pwsh", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
+
+RUN Install-Module -Name PSScriptAnalyzer -Scope AllUsers -Force
 
 SHELL ["/bin/bash", "-c"]
+
+RUN mkdir -p "/home/validator/.cache/powershell" && \
+    chmod 555 "/home/validator/.cache/powershell" && \
+    rm -f "/home/validator/.cache/powershell/*"
 
 USER validator
 
