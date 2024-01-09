@@ -1,4 +1,4 @@
-name: Docker Build Bash Checker CI
+name: Docker Build Shell Checker CI
 
 on:  # yamllint disable-line rule:truthy
   pull_request:
@@ -10,7 +10,7 @@ on:  # yamllint disable-line rule:truthy
 
 env:
   # Specify which image to build
-  DOCKER_IMAGE: ghcr.io/${{ github.repository_owner }}/inline-bash-check
+  DOCKER_IMAGE: ghcr.io/${{ github.repository_owner }}/inline-shell-check
 
 jobs:
   build:
@@ -39,7 +39,7 @@ jobs:
            org.opencontainers.image.source=${{ github.event.repository.clone_url }}
            org.opencontainers.image.created=$(git log -1 --format=%cd --date=iso-strict)
            org.opencontainers.image.revision=${{ github.sha }}
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64
 
       - name: Log in to GitHub Docker Registry
         uses: docker/login-action@v3
@@ -63,7 +63,7 @@ jobs:
            org.opencontainers.image.source=${{ github.event.repository.clone_url }}
            org.opencontainers.image.created=$(git log -1 --format=%cd --date=iso-strict)
            org.opencontainers.image.revision=${{ github.sha }}
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64
 
       - name: Push release image
         # Build and push because of multi platform build
@@ -80,4 +80,4 @@ jobs:
            org.opencontainers.image.source=${{ github.event.repository.clone_url }}
            org.opencontainers.image.created=$(git log -1 --format=%cd --date=iso-strict)
            org.opencontainers.image.revision=${{ github.sha }}
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64
