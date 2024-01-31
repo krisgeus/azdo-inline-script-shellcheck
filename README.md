@@ -58,6 +58,28 @@ In your `.pre-commit-config.yaml` use the following config:
     name: Check shell snippets in yaml files
 ```
 
+## validate-powershell-snippets
+
+The validate powershell snippets hook extracts (pwsh) shell script snippets from AZDO pipeline yaml files.
+PSScriptAnalyzer is executed for each snippet encountered.
+
+AZDO parameter or variable references (with the `${{ par }}` syntax) are converted into
+powershell variabel references to prevent errors.
+
+### Powershell validation Usage
+
+In your `.pre-commit-config.yaml` use the following config:
+
+```yaml
+- repo: https://github.com/krisgeus/azdo-inline-script-shellcheck
+  rev: v2.0.2
+  hooks:
+  - id: validate-powershell-snippets
+    name: Check powershell snippets in yaml files
+    language: docker
+    entry: /bin/validate-pwsh-snippets
+```
+
 ## validate-powershell-snippets-docker-latest
 
 The validate Powershell snippets hook extracts powershell script snippets from AZDO pipeline yaml files.
