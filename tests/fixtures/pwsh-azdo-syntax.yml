@@ -1,0 +1,5 @@
+---
+# AZDO template expressions must be rewritten before the snippet is analyzed.
+steps:
+  - pwsh: |
+      Write-Output "${{ parameters.environment }}"

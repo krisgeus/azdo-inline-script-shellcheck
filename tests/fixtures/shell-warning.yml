@@ -1,0 +1,5 @@
+---
+steps:
+  - bash: |
+      cd /tmp
+      echo "cd without || exit triggers SC2164"

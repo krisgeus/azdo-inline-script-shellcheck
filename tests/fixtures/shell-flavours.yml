@@ -1,0 +1,17 @@
+---
+# One snippet for every supported way of declaring an inline shell script.
+steps:
+  - script: echo "script shorthand"
+  - bash: echo "bash shorthand"
+  - task: CmdLine@2
+    inputs:
+      script: echo "CmdLine task"
+  - task: Bash@3
+    inputs:
+      targetType: inline
+      script: echo "Bash task"
+  - task: AzureCLI@2
+    inputs:
+      scriptType: bash
+      scriptLocation: inlineScript
+      inlineScript: echo "AzureCLI task"

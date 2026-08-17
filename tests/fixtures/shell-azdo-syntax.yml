@@ -1,0 +1,6 @@
+---
+# AZDO template expressions and undefined pipeline variables must not be reported.
+steps:
+  - bash: |
+      echo "${{ parameters.environment }}"
+      echo "$PIPELINE_PROVIDED_VARIABLE"

@@ -1,0 +1,4 @@
+---
+steps:
+  - pwsh: |
+      Invoke-Expression "Get-ChildItem"

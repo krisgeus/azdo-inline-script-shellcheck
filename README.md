@@ -118,3 +118,25 @@ In your `.pre-commit-config.yaml` use the following config:
   - id: validate-powershell-snippets-docker-release
     name: Check shell snippets in yaml files
 ```
+
+## Tests
+
+The unit tests in `tests/run-tests.sh` cover snippet extraction, the exit status of both
+hooks and the handling of snippets that are too large to pass as a command line argument.
+The build pipeline runs them against the freshly built image, with
+`SNIPPET_CHECK_REQUIRE_ALL=1` so a missing tool fails the build instead of skipping tests:
+
+```shell
+docker build -t inline-shell-check:test .
+docker run --rm --volume "${PWD}/tests:/tests:ro" \
+  --env SNIPPET_CHECK_REQUIRE_ALL=1 \
+  --entrypoint /tests/run-tests.sh inline-shell-check:test
+```
+
+Building the image only works on `linux/amd64`, so on other architectures run the tests
+against the checkout instead. That needs `yq`, `shellcheck` and `pwsh` with
+`PSScriptAnalyzer` on the PATH; the powershell tests are skipped when they are missing.
+
+```shell
+SNIPPET_CHECK_BIN="${PWD}" ./tests/run-tests.sh
+```

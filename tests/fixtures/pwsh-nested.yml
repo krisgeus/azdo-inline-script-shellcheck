@@ -1,0 +1,14 @@
+---
+# Snippets below stages and jobs must be found too, not just top level steps.
+stages:
+  - stage: One
+    jobs:
+      - job: A
+        steps:
+          - pwsh: Write-Output "nested in job A"
+      - job: B
+        steps:
+          - task: PowerShell@2
+            inputs:
+              targetType: inline
+              script: Write-Output "nested in job B"

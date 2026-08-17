@@ -1,0 +1,16 @@
+---
+# Snippets below stages and jobs must be found too, not just top level steps.
+stages:
+  - stage: One
+    jobs:
+      - job: A
+        steps:
+          - bash: echo "nested in job A"
+      - job: B
+        steps:
+          - bash: echo "nested in job B"
+  - stage: Two
+    jobs:
+      - job: C
+        steps:
+          - bash: echo "nested in job C"
