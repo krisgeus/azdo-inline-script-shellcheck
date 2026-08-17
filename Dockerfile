@@ -8,7 +8,7 @@ ENV POWERSHELL_TELEMETRY_OPTOUT=1
 USER root
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends wget && \
+    apt-get install -y --no-install-recommends wget=1.25.0-2ubuntu3 && \
     wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 && \
     chmod +x /usr/local/bin/yq && \
     apt-get autoremove -y && \
