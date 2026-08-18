@@ -5,7 +5,8 @@ FROM drjp81/powershell:latest
 
 ENV POWERSHELL_TELEMETRY_OPTOUT=1
 
-USER root
+# Use root user to install libraries
+USER 0
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends wget=1.25.0-2ubuntu3 && \
@@ -18,7 +19,8 @@ RUN pwsh -Command \
     "Set-PSRepository -ErrorAction Stop -InstallationPolicy Trusted -Name PSGallery -Verbose; \
     Install-Module -ErrorAction Stop -Name PSScriptAnalyzer -Scope AllUsers -Force"
 
-USER ubuntu
+# Use ubuntu user to run applications
+USER 1000
 
 SHELL ["/bin/bash", "-c"]
 
