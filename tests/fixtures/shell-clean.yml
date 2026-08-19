@@ -1,0 +1,4 @@
+---
+steps:
+  - bash: |
+      echo "nothing wrong here"

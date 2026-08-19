@@ -1,0 +1,5 @@
+---
+# A yaml file without any steps, e.g. a variable template.
+variables:
+  - name: environment
+    value: production

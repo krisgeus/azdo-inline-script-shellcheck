@@ -1,0 +1,21 @@
+---
+# One snippet for every supported way of declaring an inline powershell script.
+steps:
+  - pwsh: Write-Output "pwsh shorthand"
+  - powershell: Write-Output "powershell shorthand"
+  - task: PowerShell@1
+    inputs:
+      scriptType: inlineScript
+      inlineScript: Write-Output "PowerShell@1 task"
+  - task: PowerShell@2
+    inputs:
+      targetType: inline
+      script: Write-Output "PowerShell@2 task"
+  - task: PowerShellOnTargetMachines@3
+    inputs:
+      InlineScript: Write-Output "PowerShellOnTargetMachines task"
+  - task: AzureCLI@2
+    inputs:
+      scriptType: pscore
+      scriptLocation: inlineScript
+      inlineScript: Write-Output "AzureCLI task"

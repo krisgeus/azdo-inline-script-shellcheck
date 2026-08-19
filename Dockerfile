@@ -1,12 +1,15 @@
 # ShellCheck image
-FROM koalaman/shellcheck-alpine:latest as builder
+FROM koalaman/shellcheck-alpine:latest AS builder
 
 FROM drjp81/powershell:latest
 
 ENV POWERSHELL_TELEMETRY_OPTOUT=1
 
+# Use root user to install libraries
+USER 0
+
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends libicu70=70.1-2 wget=1.21.2-2ubuntu1 && \
+    apt-get install -y --no-install-recommends wget=1.25.0-2ubuntu3 && \
     wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 && \
     chmod +x /usr/local/bin/yq && \
     apt-get autoremove -y && \
@@ -15,6 +18,9 @@ RUN apt-get update && \
 RUN pwsh -Command \
     "Set-PSRepository -ErrorAction Stop -InstallationPolicy Trusted -Name PSGallery -Verbose; \
     Install-Module -ErrorAction Stop -Name PSScriptAnalyzer -Scope AllUsers -Force"
+
+# Use ubuntu user to run applications
+USER 1000
 
 SHELL ["/bin/bash", "-c"]
 

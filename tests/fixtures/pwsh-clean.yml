@@ -1,0 +1,4 @@
+---
+steps:
+  - pwsh: |
+      Write-Output "nothing wrong here"

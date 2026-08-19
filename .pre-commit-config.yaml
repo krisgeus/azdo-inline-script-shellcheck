@@ -25,13 +25,28 @@ repos:
   hooks:
     - id: hadolint-docker
 
-- repo: https://github.com/melmorabity/pre-commit-psscriptanalyzer
-  rev: v1.0.0
+- repo: local
   hooks:
-    # Check PowerShell code
-    - id: psscriptanalyzer-check-docker
-    # Format PowerShell code
-    - id: psscriptanalyzer-format-docker
+    - id: powershell-script-checker
+      name: powershell-script-checker
+      language: docker_image
+      entry: --user root --entrypoint pwsh --rm cypher0n3/psscriptanalyzer-docker:latest
+      args:
+        - -Command
+        - /src/PSScriptAnalyzer-wrapper.ps1
+        - -Check
+      types_or: [powershell]
+      pass_filenames: true
+    - id: powershell-script-formatter
+      name: powershell-script-formatter
+      language: docker_image
+      entry: --user root --entrypoint pwsh --rm cypher0n3/psscriptanalyzer-docker:latest
+      args:
+        - -Command
+        - /src/PSScriptAnalyzer-wrapper.ps1
+        - -Format
+      types_or: [powershell]
+      pass_filenames: true
 
 - repo: https://github.com/koalaman/shellcheck-precommit
   rev: v0.9.0

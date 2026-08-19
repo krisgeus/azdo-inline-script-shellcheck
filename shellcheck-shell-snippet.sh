@@ -1,9 +1,10 @@
 #!/bin/sh
 
-# Print shell snippet to check.
+# Check the shell snippet read from stdin.
+# $1 is an optional label used in the progress message.
 # AZDO parameter / variable refferences with ${{ par }} are converted into shell variable syntax
 # Shellcheck is invoked
-cd /bin && \
-echo "Checking shell script snippet $1"; echo "$1" | \
-sed -r -e "s/\{\{[ ]?/\{/g" -e "s/[ ]?\}\}/\}/g"  | \
+cd "${SNIPPET_CHECK_BIN:-/bin}" || exit 1
+echo "Checking shell script snippet ${1:-}"
+sed -r -e "s/\{\{[ ]?/\{/g" -e "s/[ ]?\}\}/\}/g" | \
 shellcheck -s bash -S warning -
